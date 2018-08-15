@@ -1,0 +1,18 @@
+# Intellij
+*.iml
+*/*.iml
+*/*/*.iml
+
+# Mac
+*.DS_Store
+*/*.DS_Store
+
+# Java class files
+*.class
+*/*.class
+
+*/target/
+*/.idea/
+*/*/target/
+*/*/.idea
+*/*/*.idea
