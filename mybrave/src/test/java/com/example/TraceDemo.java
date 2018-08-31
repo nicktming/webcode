@@ -33,15 +33,15 @@ public class TraceDemo {
     public static void main(String[] args) {
         Tracing tracing = initTracing();
         testTraceNormal(tracing);
-        testTraceTwoPhase(tracing);
-        testTraceTwoPhase2(tracing);
+        //testTraceTwoPhase(tracing);
+        //testTraceTwoPhase2(tracing);
         sleep(1000);
     }
 
 
     private static void testTraceNormal(Tracing tracing) {
         Tracer tracer = tracing.tracer();
-        Span span = tracer.newTrace().name("encode").start();
+        Span span = tracer.newTrace().name("encode1").start();
         try {
             doSomethingExpensive();
         } finally {
