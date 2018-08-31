@@ -23,10 +23,10 @@ public class TestDistributedRedisLock {
         Thread thread_2 = new LockWithoutBoolean("thread-2");
         thread_1.start();
         try {
-            TimeUnit.SECONDS.sleep(10); // 睡10秒钟 为了让thread_1充分运行
+            TimeUnit.SECONDS.sleep(10); // let thread-1 get the lock
             thread_2.start();
-            TimeUnit.SECONDS.sleep(10); // 让thread_2 等待锁
-            thread_2.interrupt(); // 中断正在等待锁的thread_2 观察thread_2是否会不会拿到锁
+            TimeUnit.SECONDS.sleep(10); // let thread_2 waiting for the lock
+            thread_2.interrupt(); // interrupte the thread-2
             finish.await();
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
@@ -60,5 +60,4 @@ public class TestDistributedRedisLock {
             System.out.println(Thread.currentThread().getName() + " ends.");
         }
     }
-
 }
