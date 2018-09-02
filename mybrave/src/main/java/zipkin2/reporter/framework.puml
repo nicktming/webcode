@@ -1,0 +1,23 @@
+@startuml
+
+interface Reporter<S> {
+    Reporter<Span> NOOP;
+    Reporter<Span> CONSOLE;
+    void report(S span);
+}
+
+class AsyncReporter implements Reporter {
+
+}
+
+interface SpanWithSizeConsumer<S> {
+    boolean offer(S next, int nextSizeInBytes);
+}
+
+abstract class BufferNextMessage implements SpanWithSizeConsumer {
+}
+
+class ByteBoundedQueue implements SpanWithSizeConsumer {
+}
+
+@enduml

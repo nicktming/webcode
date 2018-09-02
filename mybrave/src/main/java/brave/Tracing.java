@@ -303,6 +303,8 @@ public abstract class Tracing implements Closeable {
       if (clock == null) clock = Platform.get().clock();
       if (localIp == null) localIp = Platform.get().linkLocalIp();
       if (reporter == null) reporter = Platform.get().reporter();
+
+      System.out.println("clock:" + clock + ", localIp:" + localIp);
       return new Default(this);
     }
 
@@ -344,6 +346,8 @@ public abstract class Tracing implements Closeable {
           builder.supportsJoin && propagationFactory.supportsJoin(),
           noop
       );
+
+      System.out.println("this.tracer:" + this.tracer);
       maybeSetCurrent();
     }
 
