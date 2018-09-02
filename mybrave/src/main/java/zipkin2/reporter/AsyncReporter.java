@@ -170,16 +170,19 @@ public abstract class AsyncReporter<S> extends Component implements Reporter<S>,
     }
 
     /** Builds an async reporter that encodes arbitrary spans as they are reported. */
+    /**
+     * 建一个异步报告器，在报告任意跨度时对其进行编码.
+     */
     public <S> AsyncReporter<S> build(BytesEncoder<S> encoder) {
       if (encoder == null) throw new NullPointerException("encoder == null");
-
+System.out.println("encoder.encoding()->" + encoder.encoding() + ", sender.encoding()->" + sender.encoding());
       if (encoder.encoding() != sender.encoding()) {
         throw new IllegalArgumentException(String.format(
             "Encoder doesn't match Sender: %s %s", encoder.encoding(), sender.encoding()));
       }
 
       final BoundedAsyncReporter<S> result = new BoundedAsyncReporter<>(this, encoder);
-
+System.out.println("messageTimeoutNanos:" + messageTimeoutNanos);
       if (messageTimeoutNanos > 0) { // Start a thread that flushes the queue in a loop.
         final BufferNextMessage<S> consumer =
             BufferNextMessage.create(encoder.encoding(), messageMaxBytes, messageTimeoutNanos);
@@ -281,7 +284,7 @@ public abstract class AsyncReporter<S> extends Component implements Reporter<S>,
           return true;
         }
       });
-
+System.out.println("send size:" + nextMessage.size());
       try {
         sender.sendSpans(nextMessage).execute();
       } catch (IOException | RuntimeException | Error t) {

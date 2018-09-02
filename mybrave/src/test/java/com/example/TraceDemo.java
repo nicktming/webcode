@@ -17,6 +17,7 @@ public class TraceDemo {
 
     public static Tracing initTracing() {
         Sender sender = OkHttpSender.create("http://localhost:9411/api/v2/spans");
+
         AsyncReporter asyncReporter = AsyncReporter.builder(sender)
                 .closeTimeout(500, TimeUnit.MILLISECONDS)
                 .build(SpanBytesEncoder.JSON_V2);
@@ -27,12 +28,13 @@ public class TraceDemo {
                 .propagationFactory(ExtraFieldPropagation.newFactory(B3Propagation.FACTORY, "user-name"))
                 .currentTraceContext(ThreadContextCurrentTraceContext.create())
                 .build();
+
         return tracing;
     }
 
     public static void main(String[] args) {
         Tracing tracing = initTracing();
-        testTraceNormal(tracing);
+        //testTraceNormal(tracing);
         //testTraceTwoPhase(tracing);
         //testTraceTwoPhase2(tracing);
         sleep(1000);
@@ -41,7 +43,7 @@ public class TraceDemo {
 
     private static void testTraceNormal(Tracing tracing) {
         Tracer tracer = tracing.tracer();
-        Span span = tracer.newTrace().name("encode1").start();
+        Span span = tracer.newTrace().name("encode2").start();
         try {
             doSomethingExpensive();
         } finally {

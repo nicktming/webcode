@@ -32,6 +32,7 @@ public interface Reporter<S> {
       return "NoopReporter{}";
     }
   };
+
   Reporter<Span> CONSOLE = new Reporter<Span>() {
     @Override public void report(Span span) {
       System.out.println(span.toString());
