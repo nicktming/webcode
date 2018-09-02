@@ -182,6 +182,7 @@ System.out.println("encoder.encoding()->" + encoder.encoding() + ", sender.encod
       }
 
       final BoundedAsyncReporter<S> result = new BoundedAsyncReporter<>(this, encoder);
+
 System.out.println("messageTimeoutNanos:" + messageTimeoutNanos);
       if (messageTimeoutNanos > 0) { // Start a thread that flushes the queue in a loop.
         final BufferNextMessage<S> consumer =
@@ -284,6 +285,7 @@ System.out.println("messageTimeoutNanos:" + messageTimeoutNanos);
           return true;
         }
       });
+
 System.out.println("send size:" + nextMessage.size());
       try {
         sender.sendSpans(nextMessage).execute();
