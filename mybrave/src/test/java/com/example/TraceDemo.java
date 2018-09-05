@@ -3,9 +3,12 @@ package com.example;
 import brave.Span;
 import brave.Tracer;
 import brave.Tracing;
-import brave.context.log4j2.ThreadContextCurrentTraceContext;
+import brave.context.slf4j.MDCScopeDecorator;
 import brave.propagation.B3Propagation;
 import brave.propagation.ExtraFieldPropagation;
+import brave.propagation.ThreadLocalCurrentTraceContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import zipkin2.codec.SpanBytesEncoder;
 import zipkin2.reporter.AsyncReporter;
 import zipkin2.reporter.Sender;
@@ -14,6 +17,8 @@ import zipkin2.reporter.okhttp3.OkHttpSender;
 import java.util.concurrent.TimeUnit;
 
 public class TraceDemo {
+
+    private static Logger logger = LoggerFactory.getLogger(TraceDemo.class);
 
     public static Tracing initTracing() {
         Sender sender = OkHttpSender.create("http://localhost:9411/api/v2/spans");
@@ -26,7 +31,11 @@ public class TraceDemo {
                 .localServiceName("tracer-demo")
                 .spanReporter(asyncReporter)
                 .propagationFactory(ExtraFieldPropagation.newFactory(B3Propagation.FACTORY, "user-name"))
-                .currentTraceContext(ThreadContextCurrentTraceContext.create())
+                //.currentTraceContext(ThreadContextCurrentTraceContext.create())
+                .currentTraceContext(ThreadLocalCurrentTraceContext.newBuilder()
+                        .addScopeDecorator(MDCScopeDecorator.create()) // puts trace IDs into logs
+                        .build()
+                )
                 .build();
 
         return tracing;
@@ -34,7 +43,7 @@ public class TraceDemo {
 
     public static void main(String[] args) {
         Tracing tracing = initTracing();
-        //testTraceNormal(tracing);
+        testTraceNormal(tracing);
         //testTraceTwoPhase(tracing);
         //testTraceTwoPhase2(tracing);
         sleep(1000);
@@ -45,6 +54,8 @@ public class TraceDemo {
         Tracer tracer = tracing.tracer();
         Span span = tracer.newTrace().name("encode2").start();
         try {
+            System.out.println("i am testing now.");
+            logger.info("i am testing now.");
             doSomethingExpensive();
         } finally {
             span.finish();
