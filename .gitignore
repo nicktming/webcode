@@ -1,29 +1,8 @@
-# Intellij
-*.iml
-*/*.iml
-*/*/*.iml
-
-# Mac
 *.DS_Store
-*/*.DS_Store
-
-# Java class files
-*.class
-*/*.class
-
-*/target/
-*/.idea/
-*/*/target/
-*/*/.idea
-*/*/*.idea
-
-
-.DS_Store
-.classpath
-.project
-.settings/
-target/
 *.iml
-.idea
-*.ipr
-*.iws
+*.idea
+*/out/
+*.class
+.DS_Store
+*/target/
+*/*.iml
