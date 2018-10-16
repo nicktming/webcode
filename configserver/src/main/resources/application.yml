@@ -1,0 +1,16 @@
+spring:
+  application:
+    name: config-server
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/nicktming/smart-web-framework.git
+          search-paths: config-repo
+          username: your name
+          password: your password
+          basedir: /tmp/tming-configserver/
+
+server:
+  port: 7001
+
