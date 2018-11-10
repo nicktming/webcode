@@ -6,7 +6,7 @@ spec:
   containers:
   - name: lifecycle-demo-container
     image: nginx
-    liefecycle:
+    lifecycle:
       postStart:
         exec:
           command: ["/bin/sh", "-c", "echo Hello from the postStart handle > /usr/share/message"]
