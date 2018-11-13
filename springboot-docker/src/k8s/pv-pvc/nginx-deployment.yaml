@@ -1,0 +1,23 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: nginx-dm
+spec:
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        name: nginx
+    spec:
+      containers:
+      - name: nginx
+        image: nginx
+        ports:
+        - containerPort: 80
+        volumeMounts:
+        - name: storage001
+          mountPath: "/usr/share/nginx/html"
+      volumes:
+      - name: storage001
+        persistentVolumeClaim:
+          claimName: pvc001
