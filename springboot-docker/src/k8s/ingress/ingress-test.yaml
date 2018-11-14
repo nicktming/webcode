@@ -11,4 +11,3 @@ spec:
         backend:
           serviceName: myweb
           servicePort: 8080
-
