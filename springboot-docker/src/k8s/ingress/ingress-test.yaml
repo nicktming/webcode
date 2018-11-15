@@ -11,3 +11,10 @@ spec:
         backend:
           serviceName: myweb
           servicePort: 8080
+  - host: tming.com
+    http:
+      paths:
+      - path: /demo
+        backend:
+          serviceName: myweb
+          servicePort: 8080
