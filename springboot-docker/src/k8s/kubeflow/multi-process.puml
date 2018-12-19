@@ -1,0 +1,24 @@
+@startuml
+skinparam monochrome true
+repeat :参数;
+fork
+partition 设备1 {
+:获取一部分训练数据;
+:前向传播获得预测值;
+:反向传播获得参数更新值;
+}
+fork again
+partition 设备2 {
+:获取一部分训练数据;
+:前向传播获得预测值;
+:反向传播获得参数更新值;
+}
+fork again
+partition 设备3 {
+:获取一部分训练数据;
+:前向传播获得预测值;
+:反向传播获得参数更新值;
+}
+end fork
+:计算参数更新平均值并更新参数;
+@enduml

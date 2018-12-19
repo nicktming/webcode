@@ -1,0 +1,9 @@
+@startuml
+skinparam monochrome true
+repeat :参数;
+:获取当前参数取值;
+:选取一部分训练数据;
+:通过前向传播获得预测值;
+:通过反向传播更新参数;
+repeat while
+@enduml
