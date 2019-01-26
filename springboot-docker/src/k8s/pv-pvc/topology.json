@@ -6,7 +6,7 @@
           "node": {
             "hostnames": {
               "manage": [
-                "VM_0_2_centos"
+                ""
               ],
               "storage": [
                 ""
@@ -15,14 +15,14 @@
             "zone": 1
           },
           "devices": [
-            "/dev/vda1"
+            "/dev/vdb"
           ]
         },
         {
           "node": {
             "hostnames": {
               "manage": [
-                "VM_0_11_centos"
+                ""
               ],
               "storage": [
                 ""
@@ -31,7 +31,7 @@
             "zone": 1
           },
           "devices": [
-            "/dev/vda1"
+            "/dev/vdb"
           ]
         }
       ]

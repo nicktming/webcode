@@ -1,8 +1,9 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: pvc001
+  name: pv001
 spec:
+  storageClassName: gluster-heketi
   accessModes:
   - ReadWriteMany
   resources:
