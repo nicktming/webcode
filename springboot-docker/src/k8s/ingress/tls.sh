@@ -7,6 +7,5 @@
 #
 #kubectl -n kube-system create secret tls dashboard-ingress-secret --key tls.key --cert tls.crt
 
-
 openssl req -x509 -nodes -days 5000 -newkey rsa:2048 -keyout tls.key -out tls.crt -subj "/CN=k8s.dashboard.com"
 kubectl create -n kube-system secret tls k8s-dashboard-ingress-secret --key tls.key --cert tls.crt
