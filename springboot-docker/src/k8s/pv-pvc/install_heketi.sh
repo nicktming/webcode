@@ -1,5 +1,11 @@
 #!/usr/bin/env bash
 
+# https://www.cnblogs.com/breezey/p/8849466.html
+# https://www.jianshu.com/p/1069ddaaea78
+# http://rdc.hundsun.com/portal/article/826.html
+# http://rdcqii.hundsun.com/portal/article/827.html
+
+
 yum install heketi heketi-client -y
 
 ssh-keygen -t rsa
