@@ -4,5 +4,7 @@ metadata:
   name: gluster-heketi
 provisioner: kubernetes.io/glusterfs
 parameters:
-  resturl:
+  resturl: "http://172.19.0.5:8089"
   restauthenabled: "false"
+  volumetype: "replicate:2"
+
