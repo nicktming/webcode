@@ -21,3 +21,4 @@ spec:
       - name: storage001
         persistentVolumeClaim:
           claimName: www
+

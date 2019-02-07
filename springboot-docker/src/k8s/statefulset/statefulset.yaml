@@ -5,16 +5,17 @@ metadata:
 spec:
   serviceName: "nginx"
   replicas: 2
+  selector:
+    matchLabels:
+      app: nginx
   template:
     metadata:
       labels:
-        name: nginx
+        app: nginx
     spec:
       containers:
       - name: nginx
-        image: nginx
+        image: nginx:1.9.1
         ports:
         - containerPort: 80
-        volumeMounts:
-        - name: storage001
-          mountPath: "/usr/share/nginx/html"
+          name: web
