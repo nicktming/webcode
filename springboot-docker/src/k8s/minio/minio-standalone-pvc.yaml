@@ -7,10 +7,10 @@ metadata:
   labels:
     app: minio-storage-claim
 spec:
-  storageClassName: local-gluster-heketi
+  storageClassName: gluster-heketi
   accessModes:
   - ReadWriteOnce
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
 
