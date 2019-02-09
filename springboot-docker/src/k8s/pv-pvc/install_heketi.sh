@@ -5,6 +5,7 @@
 # http://rdc.hundsun.com/portal/article/826.html
 # http://rdcqii.hundsun.com/portal/article/827.html
 
+# kubectl patch storageclass gluster-heketi -p '{"metadata": {"annotations":{"storageclass.kubernetes.io/is-default-class":"true"}}}'
 
 yum install heketi heketi-client -y
 
