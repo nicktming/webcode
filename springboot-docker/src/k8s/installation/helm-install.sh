@@ -7,7 +7,7 @@ cp helm /usr/local/bin/
 
 cd ..
 
-cat <<EOF tiller-rbac-config.yaml
+cat <<EOF > tiller-rbac-config.yaml
 apiVersion: v1
 kind: ServiceAccount
 metadata:
